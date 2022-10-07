@@ -45,41 +45,6 @@
       "webRoot": "${workspaceFolder}"
     },
     {
-      "name": "Python: AI Train",
-      "type": "python",
-      "request": "launch",
-      "program": "${workspaceFolder}/apps/ai_train/main.py",
-      "args": ["internal-basic-1"],
-      "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}/devenv"
-    },
-    {
-      "name": "Python: AI Train - Test",
-      "type": "python",
-      "request": "launch",
-      "program": "${workspaceFolder}/apps/ai_train/main.py",
-      "args": ["external-wfs-test-1"],
-      "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}/devenv"
-    },
-    {
-      "name": "Python: Current File",
-      "type": "python",
-      "request": "launch",
-      "program": "${file}",
-      "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}/devenv"
-    },
-    {
-      "name": "Pyspark: Current File",
-      "type": "python",
-      "request": "launch",
-      "program": "${file}",
-      "args": ["--packages", "mysql:mysql-connector-java:8.0.27"],
-      "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}/devenv"
-    },
-    {
       "type": "node",
       "request": "launch",
       "name": "Jest watch current file",
