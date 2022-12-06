@@ -1,4 +1,5 @@
 {
+  "name": "sensor-processor",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/sensor-processor/src",
   "projectType": "application",
@@ -48,7 +49,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/sensor-processor"],
+      "outputs": ["{workspaceRoot}/coverage/apps/sensor-processor"],
       "options": {
         "jestConfig": "apps/sensor-processor/jest.config.ts",
         "passWithNoTests": true

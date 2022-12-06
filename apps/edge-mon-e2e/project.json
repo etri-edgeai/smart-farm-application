@@ -1,4 +1,5 @@
 {
+  "name": "edge-mon-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/edge-mon-e2e/src",
   "projectType": "application",

@@ -1,4 +1,5 @@
 {
+  "name": "edge-mon",
   "projectType": "application",
   "sourceRoot": "apps/edge-mon/src",
   "prefix": "edge",
@@ -87,7 +88,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/edge-mon"],
+      "outputs": ["{workspaceRoot}/coverage/apps/edge-mon"],
       "options": {
         "jestConfig": "apps/edge-mon/jest.config.ts",
         "passWithNoTests": true

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild } from 
 import { HttpService } from '../../services/http.service';
 // import { PredictInternalSelfDto } from '@libs/models/sensor';
 import { DeviceDto, SimpleDeviceDto } from '@libs/models/device';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import * as am5 from '@amcharts/amcharts5';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import * as am5xy from '@amcharts/amcharts5/xy';

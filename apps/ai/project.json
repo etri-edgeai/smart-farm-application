@@ -1,4 +1,5 @@
 {
+  "name": "ai",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/ai/src",
   "projectType": "application",
@@ -48,7 +49,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/ai"],
+      "outputs": ["{workspaceRoot}/coverage/apps/ai"],
       "options": {
         "jestConfig": "apps/ai/jest.config.ts",
         "passWithNoTests": true
