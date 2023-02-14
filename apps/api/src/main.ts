@@ -1,9 +1,9 @@
 import { Logger } from '@nestjs/common';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 //import { WsAdapter } from '@nestjs/platform-ws';
-import { SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
+// import { SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
 import { CommonConfigService, LogWrapper } from '@libs/config';
-import { AllExceptionFilter } from './app/all-exception.filter';
+import { AllExceptionFilter } from './app/filters/all-exception.filter';
 
 import { AppModule } from './app/app.module';
 
@@ -17,6 +17,7 @@ async function bootstrap() {
   const config = app.get(CommonConfigService);
   const port = +process.env.PORT || +config.config.get("LOCAL_API_PORT", 8100);
 
+  /*
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Edge api')
     .setDescription("API Description")
@@ -24,6 +25,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('swagger', app, document);
+  */
 
   app.enableCors({ origin: '*' });
   // app.useWebSocketAdapter(new WsAdapter(app));

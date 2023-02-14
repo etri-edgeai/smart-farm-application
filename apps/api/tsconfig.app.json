@@ -4,8 +4,8 @@
     "module": "commonjs",
     "types": ["node"],
     "emitDecoratorMetadata": true,
-    "target": "es2015"
+    "target": "es2021"
   },
-  "exclude": ["**/*.spec.ts", "jest.config.ts"],
-  "include": ["**/*.ts", "../../libs/types/*.d.ts"]
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "include": ["src/**/*.ts"]
 }
