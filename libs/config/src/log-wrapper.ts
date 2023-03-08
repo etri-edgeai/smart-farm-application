@@ -54,10 +54,10 @@ export class LogWrapper implements LoggerService {
     });
   }
 
-  parseCallStack(data, skipIdx = 7) {
+  parseCallStack(data, skipIdx = 4) {
     const stackReg = /at (?:(.+)\s+\()?(?:(.+?):(\d+)(?::(\d+))?|([^)]+))\)?/;
     const stacklines = data.stack.split("\n").slice(skipIdx);
-    const lineMatch = stackReg.exec(stacklines[0]);
+    const lineMatch = stackReg.exec(stacklines[3]);
     if (lineMatch && lineMatch.length === 6) {
       return {
         functionName: lineMatch[1],
