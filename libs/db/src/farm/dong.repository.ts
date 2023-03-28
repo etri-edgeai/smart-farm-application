@@ -1,8 +1,8 @@
 import { DataSource } from "typeorm";
-import { FarmDong } from "./farm-dong.entity";
+import { Dong } from "./dong.entity";
 
-export const FarmDongRepository = (dataSource: DataSource) => 
-    dataSource.getRepository(FarmDong).extend({
+export const DongRepository = (dataSource: DataSource) => 
+    dataSource.getRepository(Dong).extend({
       async getDeviceIdByDongId(dongId: number) {
         const rs = await this.createQueryBuilder()
             .select("in_env_device_idx")

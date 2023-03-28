@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 import { SdhInternal } from "./sdh-internal.entity";
-import { DateUtils } from "@libs/utils";
+import { DateUtils } from "@libs/utils/date.utils";
 
 export const SdhInternalRepository = (dataSource: DataSource) => 
     dataSource.getRepository(SdhInternal).extend({

@@ -1,6 +1,6 @@
 import { CommonConfigModule } from '@libs/config';
 import { Module, Global } from '@nestjs/common';
-import { COMMON } from './constants';
+import { COLLECT, COMMON } from './constants';
 import { DbService } from './db.service';
 
 @Global()
@@ -8,8 +8,9 @@ import { DbService } from './db.service';
   imports: [CommonConfigModule],
   providers: [
     {provide: COMMON, useValue: COMMON},
+    {provide: COLLECT, useValue: COLLECT},
     DbService
   ],
-  exports: [COMMON, DbService]
+  exports: [COMMON, COLLECT, DbService]
 })
 export class DbModule {}
