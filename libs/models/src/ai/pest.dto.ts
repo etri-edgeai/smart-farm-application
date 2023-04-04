@@ -1,7 +1,6 @@
 export class PestRuleCondition {
   type: "crop" | "date" | "internal" | "external" | "culture";
-  field?: string;
-  dayNight?: "all" | "day" | "night";
+  field: string;
   aggr?: "avg" | "min" | "max"
   from?: string|number;
   to?: string|number;
@@ -10,7 +9,6 @@ export class PestRuleCondition {
 }
 
 export class PestRuleDto {
-  name: string;
   period: number;
-  conditions: PestRuleCondition[]
+  conditions: (PestRuleCondition)[]
 }
