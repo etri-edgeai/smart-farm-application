@@ -1,0 +1,40 @@
+  <mat-form-field class="w-full">
+    <mat-label>농장 선택</mat-label>
+    <mat-select [formControl]="selectedFarms" (selectionChange)="onChange($event)" placeholder="농장을 선택하세요" [multiple]="multiple" #select>
+      <!--
+      <mat-select-trigger>
+        {{selectedFarms.value?.name || ''}}
+      </mat-select-trigger>
+    -->
+
+      <!-- admin인 경우 전체 농장 표시 -->
+      <ng-container *ngFor="let farm of allFarms">
+        <ng-container *ngFor="let dong of farm.dongs">
+          <mat-option *ngIf="!(mainOnly && !dong.main)" [value]="dong">
+            {{farm.name}} <span *ngIf="!mainOnly && farm.dongs.length > 1">{{dong.no}}동</span> <!-- 동이 2개 이상일 경우에만 동번호 표시 -->
+          </mat-option>
+        </ng-container>
+      </ng-container>
+
+      <mat-optgroup *ngIf="!allFarms && userFarms && userFarms.length > 0" label="내 농장">
+        <ng-container *ngFor="let farm of userFarms">
+          <ng-container *ngFor="let dong of farm.dongs">
+            <mat-option *ngIf="!(mainOnly && !dong.main)" [value]="dong">
+              {{farm.name}} <span *ngIf="farm.dongs.length > 1">{{dong.no}}동</span> <!-- 동이 2개 이상일 경우에만 동번호 표시 -->
+            </mat-option>
+          </ng-container>
+        </ng-container>
+      </mat-optgroup>
+
+      <mat-optgroup *ngIf="!allFarms && sharedFarms && sharedFarms.length > 0" label="공유받은 농장">
+        <ng-container *ngFor="let farm of sharedFarms">
+          <ng-container *ngFor="let dong of farm.dongs">
+            <mat-option *ngIf="!(mainOnly && !dong.main)" [value]="dong">
+              {{farm.name}} <span *ngIf="farm.dongs.length > 1">{{dong.no}}동</span> <!-- 동이 2개 이상일 경우에만 동번호 표시 -->
+            </mat-option>
+          </ng-container>
+        </ng-container>
+      </mat-optgroup>
+
+    </mat-select>
+  </mat-form-field>

@@ -1,0 +1,12 @@
+<mat-button-toggle-group #dateRange="matButtonToggleGroup" (change)="onTimeGroupChange($event.value)" value="threeDays">
+    <mat-button-toggle *ngFor="let range of dateRangeGroup" [value]="range">{{'datetime.range.'+range | transloco}}</mat-button-toggle>
+</mat-button-toggle-group>
+
+<mat-form-field class="w-64 ml-2 mr-5">
+    <mat-date-range-input [formGroup]="searchRange" [rangePicker]="searchRangePicker" [disabled]="dateRange.value!='select'">
+        <input matStartDate placeholder="시작일" formControlName="start"> />
+        <input matEndDate placeholder="종료일" formControlName="end">/>
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="searchRangePicker"></mat-datepicker-toggle>
+    <mat-date-range-picker #searchRangePicker></mat-date-range-picker>
+</mat-form-field>
