@@ -1,0 +1,39 @@
+<div class="absolute inset-0 min-w-0 overflow-y-auto">
+    <div class="w-full p-6">
+        <!-- Title -->
+        <div>
+            <div class="text-3xl font-semibold leading-8">생육조사 항목 관리</div>
+        </div>
+
+        <div class="property-container border px-2 py-5 rounded-2xl bg-card overflow-hidden mt-6 mb-6">
+            <div class="w-full overflow-auto pb-10">
+                <table class="w-full" mat-table [dataSource]="dataSource" [trackBy]="trackByFn" #ruleTable>
+                    <ng-container *ngFor="let col of tableColumns; let i = index">
+                        <ng-container [matColumnDef]="col">
+                            <th class="text-center font-medium whitespace-nowrap" mat-header-cell *matHeaderCellDef>{{ col }}</th>
+                            <td mat-cell *matCellDef="let prop" class="whitespace-nowrap p-0">
+                                <!-- 항목 이름 -->
+                                <div *ngIf="i == 0; else checkBox" class="font-medium text-default pl-10 head">
+                                    {{ prop.name }} ({{prop.unit}})
+                                </div>
+                                <!-- 체크박스 -->
+                                <ng-template #checkBox>
+                                    <div class="flex justify-center items-center">
+                                        <mat-checkbox color="primary" [(ngModel)]="prop[col]"></mat-checkbox>
+                                    </div>
+                                </ng-template>
+                            </td>
+                        </ng-container>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+                </table>
+            </div>
+            <!-- 저장 -->
+            <button class="w-32 rounded-full mr-3" style="float: right" mat-flat-button [color]="'primary'" (click)="save()">
+                저 장
+            </button>
+        </div>
+    </div>
+</div>
