@@ -1,0 +1,29 @@
+{
+  "main-menu": {
+    "env": "Sensor data",
+    "mentoring": {
+      "root": "Mentoring",
+      "rule-list": "Rule Management",
+      "rule-statistics": "Rule Statistics",
+      "mentor-statistics": "Mentor Statistics"
+    },
+    "user-management": "Members",
+    "device-management": "Devices",
+    "codes": "Codes",
+    "growth": {
+      "root": "Growth",
+      "properties": "Growth Properties",
+      "list": "Insert/List"
+    }
+  },
+  "page": {
+    "select-farms": "select farms",
+    "export-excel": "download Excel",
+    "env": {
+      "in": "Inner Environment",
+      "ex": "External Environment",
+      "cm": "Culturemedium Environment",
+      "report": "Analysis Report"
+    }
+  }
+}
