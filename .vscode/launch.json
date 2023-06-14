@@ -2,47 +2,85 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
       "name": "Launch Api App",
+      "type": "node-terminal",
       "request": "launch",
-      "runtimeArgs": [ "run-script", "start", "api" ],
-      "runtimeExecutable": "npm",
-      "skipFiles": [ "<node_internals>/**" ],
-      "console": "integratedTerminal"
+      "command": "nx serve api",
     },
     {
-      "type": "node",
-      "name": "Launch SensorProcessor App",
+      "name": "Launch Auth App",
+      "type": "node-terminal",
       "request": "launch",
-      "runtimeArgs": [ "run-script", "start", "sensor-processor" ],
-      "runtimeExecutable": "npm",
-      "skipFiles": [ "<node_internals>/**" ],
-      "console": "integratedTerminal"
+      "command": "nx serve auth",
     },
     {
-      "type": "node",
       "name": "Launch Farm App",
+      "type": "node-terminal",
       "request": "launch",
-      "runtimeArgs": [ "run-script", "start", "farm"],
-      "runtimeExecutable": "npm",
-      "skipFiles": [ "<node_internals>/**" ],
-      "console": "integratedTerminal"
+      "command": "nx serve farm",
+    },
+    {
+      "name": "Launch System App",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "nx serve system",
+    },
+    {
+      "name": "Launch SensorProcessor App",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "nx serve sensor-processor",
     },
     {
       "name": "Launch AI App",
-      "type": "node",
+      "type": "node-terminal",
       "request": "launch",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [ "run-script", "start", "ai" ],
-      "skipFiles": [ "<node_internals>/**" ],
-      "console": "integratedTerminal"
+      "command": "nx serve ai",
     },
     {
-      "name": "Chrome",
+      "name": "Chrome - web",
       "request": "launch",
       "type": "chrome",
       "url": "http://localhost:4200",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Python: AI Train",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/ai_train/main.py",
+      "args": ["growth-simple-1"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/devenv"
+    },
+    {
+      "name": "Python: AI Test",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/ai_train/main.py",
+      "args": ["internal-wfs-test-1"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/devenv"
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/devenv",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/apps/ai_train"
+      }
+    },
+    {
+      "name": "Pyspark: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "args": ["--packages", "mysql:mysql-connector-java:8.0.27"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/devenv"
     },
     {
       "type": "node",

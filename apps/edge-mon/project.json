@@ -1,5 +1,6 @@
 {
   "name": "edge-mon",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/edge-mon/src",
   "prefix": "edge",
@@ -81,13 +82,13 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["apps/edge-mon/**/*.ts", "apps/edge-mon/**/*.html"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/apps/edge-mon"],
       "options": {
         "jestConfig": "apps/edge-mon/jest.config.ts",
