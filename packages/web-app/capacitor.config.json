@@ -1,0 +1,18 @@
+{
+  "appId": "kr.farmcloud.connect",
+  "appName": "ConnectOn",
+  "bundledWebRuntime": true,
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": true
+  },
+  "server": {
+    "url": "http://10.0.2.2:4200",
+    "errorPath": "error.html"
+   },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 500
+    }
+  }
+}

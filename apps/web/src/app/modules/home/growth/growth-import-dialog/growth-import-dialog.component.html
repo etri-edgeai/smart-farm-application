@@ -1,0 +1,20 @@
+<div class="w-200 h-120 p-8">
+    <mat-form-field class="flex w-full flex-auto">
+        <textarea #importedText matInput rows="10" cols="240"> </textarea>
+    </mat-form-field>
+
+    <!-- Actions -->
+    <ng-container>
+        <div class="flex items-center justify-center sm:justify-end px-6 py-4 space-x-3 bg-gray-50 dark:bg-black dark:bg-opacity-10" >
+            <!-- Cancel -->
+            <ng-container>
+                <button mat-stroked-button [matDialogClose]="'cancelled'">취소</button>
+            </ng-container>
+
+            <!-- ok -->
+            <ng-container *ngIf="true">
+                <button mat-flat-button color="primary" [matDialogClose]="importedText.value">확인</button>
+            </ng-container>
+        </div>
+    </ng-container>
+</div>

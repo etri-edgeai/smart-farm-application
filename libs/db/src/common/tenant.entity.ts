@@ -10,15 +10,21 @@ export class Tenant {
   @Column({ comment: 'db명'})
   dbName: string;
   @Column({ comment: '기본 위도'})
-  latitude: number;
+  latitude?: number;
   @Column({ comment: '기본 경도'})
-  longitude: number;
+  longitude?: number;
   @Column({ comment: '설명'})
-  description: string;
+  description?: string;
 
   static async getTenantByCode(commonDs: DataSource, siteCode: string) {
     const tenantRepo = commonDs.getRepository(Tenant);
     const tenant = await tenantRepo.findOneBy({code: siteCode});
     return tenant;
+  }
+
+  static getDefaultTenants() {
+    const t = new Tenant();
+    t.dbName = 'default';
+    return [t];
   }
 }

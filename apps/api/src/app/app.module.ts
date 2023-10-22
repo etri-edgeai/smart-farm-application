@@ -3,10 +3,10 @@ import { HttpModule } from '@nestjs/axios';
 import { BullModule } from '@nestjs/bull';
 import { CommonConfigModule, CommonConfigService } from '@libs/config';
 import { CommModule } from '@libs/comm';
-import { AppController } from './app.controller';
+import { ApiController } from './controllers/api.controller';
 import { SensorController } from './controllers/sensor.controller';
-import { EdgeMonMiddleware } from './middlewares/edge-mon.middleware';
 import { SensorService } from './controllers/sensor.service';
+import { FrontendMiddleware } from './middlewares/frontend.middleware';
 
 @Module({
   imports: [
@@ -17,21 +17,17 @@ import { SensorService } from './controllers/sensor.service';
       }}),
       inject: [CommonConfigService]
     }),
-    BullModule.registerQueue({
-      name: 'sensor'
-    }),
+    BullModule.registerQueue({ name: 'sensor' }),
     CommonConfigModule,
-    CommModule.forSend()
+    CommModule
   ],
-  controllers: [AppController, SensorController],
+  controllers: [SensorController, ApiController], // SensorController 우선권을 가지기 위해 순서가 바뀌면 안됨
   providers: [SensorService]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {
-    consumer.apply(EdgeMonMiddleware).forRoutes(
-      // For all edge-mon routes
-      { path: '/edge', method: RequestMethod.GET }, 
-      { path: '/edge/**', method: RequestMethod.ALL },
+    consumer.apply(FrontendMiddleware).forRoutes(
+      { path: '*', method: RequestMethod.ALL },
     );
   }
 }

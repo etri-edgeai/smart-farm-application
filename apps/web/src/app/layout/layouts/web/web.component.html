@@ -1,0 +1,29 @@
+<!-- Wrapper -->
+<div class="flex flex-col w-full h-screen min-h-full">
+    <!-- Header -->
+    <div class="sticky flex flex-0 items-center justify-between w-full h-16 px-4 md:px-6 z-49 top-0 shadow dark:shadow-none dark:border-b bg-card print:hidden">
+        <!-- Navigation toggle button -->
+        <button mat-icon-button>
+            <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="signOut()" color="primary" title="logout"><mat-icon svgIcon="heroicons_outline:logout"></mat-icon></button>
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-col flex-auto">
+        <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+             Otherwise, layout changes won't be registered and the view won't be updated! -->
+        <router-outlet *ngIf="true"></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <div class="sticky flex flex-0 items-center justify-between w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none border-t bg-card print:hidden">
+        <!-- Navigation toggle button -->
+        <button mat-icon-button> <mat-icon [svgIcon]="'heroicons_outline:home'"></mat-icon> </button>
+        <button mat-icon-button> <mat-icon [svgIcon]="'heroicons_outline:chart-bar'"></mat-icon> </button>
+        <button mat-icon-button (click)="goGrowth()"> <mat-icon [svgIcon]="'heroicons_outline:cloud'"></mat-icon> </button>
+        <button mat-icon-button> <mat-icon [svgIcon]="'heroicons_outline:user'"></mat-icon> </button>
+        <button mat-icon-button (click)="detectDisease()"> <mat-icon [svgIcon]="'heroicons_outline:camera'"></mat-icon> </button>
+    </div>
+</div>

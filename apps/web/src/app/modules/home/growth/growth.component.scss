@@ -1,0 +1,39 @@
+:host ::ng-deep {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+  }
+
+  .mat-mdc-tab-body-wrapper {
+    height: 100%;
+  }
+
+  .mat-mdc-tab-body-content {
+    //position: absolute;
+    // padding: 16px !important;
+    //padding: 0;
+    //@apply inset-5;
+  }
+
+  td {
+    .mat-mdc-form-field-infix {
+      width: auto;
+      padding-top: 8px !important;
+      padding-bottom: 8px !important;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      height: 40px !important;
+    }
+
+    .mat-mdc-form-field-flex {
+      padding-left: 4px !important;
+      padding-right: 4px !important;
+    }
+  }
+  .edit {
+    td {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

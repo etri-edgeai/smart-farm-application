@@ -1,8 +1,7 @@
 const path = require('path');
 const colors = require('tailwindcss/colors');
 const defaultTheme = require('tailwindcss/defaultTheme');
-// const generatePalette = require(path.resolve(__dirname, ('libs/fuse/tailwind/utils/generate-palette')));
-const generatePalette = require('./libs/@fuse/tailwind/utils/generate-palette');
+const generatePalette = require('./libs/front/tailwind/utils/generate-palette');
 
 /**
  * Custom palettes
@@ -22,7 +21,7 @@ const themes = {
     'default': {
         primary  : {
             ...colors.indigo,
-            DEFAULT: colors.indigo[600]
+            DEFAULT: colors.indigo[800]
         },
         accent   : {
             ...colors.slate,
@@ -38,6 +37,7 @@ const themes = {
     },
     // Rest of the themes will use the 'default' as the base
     // theme and extend it with their given configuration
+    /*
     'brand' : {
         primary: customPalettes.brand
     },
@@ -58,6 +58,13 @@ const themes = {
     },
     'amber' : {
         primary: colors.amber
+    },
+    */
+    'dy': {
+        primary: {
+            ...colors.green,
+            DEFAULT: colors.green[700]
+        }
     }
 };
 
@@ -103,8 +110,9 @@ const config = {
                 '0': '0 0 auto'
             },
             fontFamily              : {
-                sans: `"Inter var", ${defaultTheme.fontFamily.sans.join(',')}`,
-                mono: `"IBM Plex Mono", ${defaultTheme.fontFamily.mono.join(',')}`
+                sans: `"Noto Sans KR", ${defaultTheme.fontFamily.sans.join(',')}`,
+                mono: `"IBM Plex Mono", ${defaultTheme.fontFamily.mono.join(',')}`,
+                inter: `Inter`
             },
             opacity                 : {
                 12: '0.12',
@@ -281,15 +289,13 @@ const config = {
         verticalAlign     : false
     },
     plugins    : [
-
         // fuse - Tailwind plugins
-        require('./libs/@fuse/tailwind/plugins/utilities'),
-        require('./libs/@fuse/tailwind/plugins/icon-size'),
-        require('./libs/@fuse/tailwind/plugins/theming')({themes}),
+        require('./libs/front/tailwind/plugins/utilities'),
+        require('./libs/front/tailwind/plugins/icon-size'),
+        require('./libs/front/tailwind/plugins/theming')({themes}),
 
         // Other third party and/or custom plugins
-        require('@tailwindcss/typography')({modifiers: ['sm', 'lg']}),
-        require('@tailwindcss/line-clamp')
+        //require('@tailwindcss/typography')({modifiers: ['sm', 'lg']}),
     ]
 };
 
