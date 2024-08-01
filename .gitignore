@@ -1,2 +1,3 @@
-fc_edge24/linux/
-fc_edge24/windows/
+mysample/
+fc_edge24/assets/models/frutnet.pt
+fc_edge24/assets/models/frutnet.pth
