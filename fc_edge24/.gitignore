@@ -41,6 +41,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/linux
+/window
 
-/linux/
-/windows/
+/assets/models/frutnet.pt
+/assets/models/frutnet.pth

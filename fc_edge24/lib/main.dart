@@ -1,9 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'img_page.dart';
+import 'pages/frutnet_page.dart';
 // import 'webview_page.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'page_home.dart';
-// import 'page_espd.dart';
+// import 'page_espd.dart';s
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,41 +15,43 @@ Future main() async {
   //   await InAppWebViewController.setWebContentsDebuggingEnabled(kDebugMode);
   // }
 
-  runApp(const MyApp());
+  runApp(const FcEdgeApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FcEdgeApp extends StatelessWidget {
+  const FcEdgeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const MyHomePage(title: 'FC EDGE 2024  Home Page'),
-      title: 'FC EDGE 2024',
+      debugShowCheckedModeBanner: false,
+      title: 'FCEDGE 24',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      home: const FcEdgeAppHomePage(title: 'FC EDGE 24'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class FcEdgeAppHomePage extends StatefulWidget {
+  const FcEdgeAppHomePage({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<FcEdgeAppHomePage> createState() => _FcEdgeAppHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
+    const PageFrutnet(),
     const PageHome(),
     // const PageEspd(),
     const PageEspdLegacy(),
-    const PageFrutnet(),
+    // ImagePickerScreen(),
     PageMultiSensor(),
     PageConnectOn(),
   ];
@@ -61,7 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FarmConnect Edge AI app'),
+        toolbarHeight: 3,
+        // title: Text('FarmConnect Edge AI app'),
+        title: null,
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -104,21 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white, // 배경색 지정
       type: BottomNavigationBarType.fixed, // 아이템이 4개 이하일 때 권장
     );
-  }
-}
-
-class PageFrutnet extends StatelessWidget {
-  const PageFrutnet({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(children: [
-      Text('3. Page'),
-      Text('Page FRUTNET'),
-    ]));
   }
 }
 
