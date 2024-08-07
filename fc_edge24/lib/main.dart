@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'img_page.dart';
-import 'pages/frutnet_page.dart';
+import 'pages/page_frutnet.dart';
+import 'pages/page_espd.dart';
 // import 'webview_page.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'page_home.dart';
@@ -47,10 +48,10 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const PageFrutnet(),
+    const PageEspd(),
     const PageHome(),
-    // const PageEspd(),
-    const PageEspdLegacy(),
+    const PageFrutnet(),
+    // const PageEspdLegacy(),
     // ImagePickerScreen(),
     PageMultiSensor(),
     PageConnectOn(),
@@ -114,8 +115,8 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
   }
 }
 
-class PageEspd extends StatelessWidget {
-  const PageEspd({super.key});
+class PageEspdLegacy2 extends StatelessWidget {
+  const PageEspdLegacy2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -166,23 +167,6 @@ class PageEspd extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20), // 간격 추가
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('결과 전송'),
-                  ),
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('삭제'),
-                  ),
-                ),
-                // Add more buttons as needed
-              ],
-            ),
           ],
         ));
   }

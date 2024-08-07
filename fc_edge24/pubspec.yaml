@@ -42,7 +42,7 @@ dependencies:
   image: ^3.0.2
   gif: ^2.3.0
   image_picker: ^1.1.2
-  pytorch_mobile: ^0.2.2
+  flutter_pytorch: ^1.0.1
 
 flutter_launcher_icons:
   android: "launcher_icon"
