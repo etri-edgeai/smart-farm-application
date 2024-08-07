@@ -103,31 +103,31 @@ class EspdListView extends StatefulWidget {
 class _EspdListViewState extends State<EspdListView> {
   final List<Map<String, String>> data = [
     {
-      "image": "/assets/test_imgs/0001091_SAM_1490.png ",
+      "image": "/assets/espd/sam1.png",
       "text1": "2024-07-01",
       "text2": " class 0 : 정상 ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
-      "image": "/assets/test_imgs/0002438_20180919_120006.png",
+      "image": "/assets/espd/sam2.png",
       "text1": "2024-06-21",
       "text2": " class 0 : 정상 ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
-      "image": "/assets/test_imgs/0001097_SAM_1496.png",
+      "image": "/assets/espd/sam3.png",
       "text1": "2024-05-29",
       "text2": " class 0 : 정상 ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
-      "image": "/assets/test_imgs/0002449_20180919_130344.png",
+      "image": "/assets/espd/sam4.png",
       "text1": "2024-04-29",
       "text2": " class 0 : 정상 ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
-      "image": "/assets/test_imgs/0005443_SAM_0638.png",
+      "image": "/assets/espd/sam5.png",
       "text1": "2024-04-21",
       "text2": " class 0 : 정상 ",
       "text3": " confidence: 0.924  latency : 300ms \n",
