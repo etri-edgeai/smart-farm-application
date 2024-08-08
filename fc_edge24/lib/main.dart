@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'img_page.dart';
-import 'pages/page_frutnet.dart';
+import 'pages/page_home.dart';
 import 'pages/page_espd.dart';
+import 'pages/page_frutnet.dart';
 // import 'webview_page.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'page_home.dart';
@@ -48,9 +48,9 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
+    const PageFrutnet(),
     const PageEspd(),
     const PageHome(),
-    const PageFrutnet(),
     // const PageEspdLegacy(),
     // ImagePickerScreen(),
     PageMultiSensor(),
@@ -167,64 +167,6 @@ class PageEspdLegacy2 extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20), // 간격 추가
-          ],
-        ));
-  }
-}
-
-class PageHome extends StatelessWidget {
-  const PageHome({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Button Pressed')),
-                );
-              },
-              child: const Text(
-                '앱',
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const Text(" # 앱 : FC EDGE 2024\n",
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-            const Text(
-              """
-# 생육 : ESPD
-  * 이미지 등을 활용한 사용법 안내
-
-# 성장 : FRTUNET
- * 이미지 등을 활용한 사용법 안내
- * 
-# 환경 : 멀티센서
- * 이미지 등을 활용한 사용법 안내
-
-# CONNECT ON 
-  * 팜커넥트앱 커넥트온 연결
-  
-# 앱 정보
-이 앱은 2024년도 정부(과학기술정보통신부)의 재원으로 정보통신기획평가원의 지원을 받아 수행된 연구임(No. 2021-0-00907 능동적 즉시 대응 및 빠른 학습이 가능한 적응형 경량 엣지 연동분석 기술개발).
-
-""",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20), // 간격 추가
-            // ElevatedButton(
-            //   onPressed: () {
-            //     // 버튼이 눌렸을 때의 동작 정의
-            //     ScaffoldMessenger.of(context).showSnackBar(
-            //       SnackBar(content: Text('Button Pressed')),
-            //     );
-            //   },
-            //   child: Text('생육'),
-            // ),
           ],
         ));
   }

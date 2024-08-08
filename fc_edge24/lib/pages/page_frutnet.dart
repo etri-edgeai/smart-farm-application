@@ -17,45 +17,60 @@ class _PageFrutnetState extends State<PageFrutnet> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+        ListTile(
+          title: Text(
+            "FRUTNET",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+        ),
+        ListTile(title: Text("▶ 사진/동영상 선택")),
+        Row(
           children: [
-            SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CameraRun(),
-                  ),
-                )
-              },
-              // onPressed: () {
-              //   ScaffoldMessenger.of(context).showSnackBar(
-              //     const SnackBar(content: Text('Camera Pressed')),
-              //   );
-              // },
-              child: const Text('Camera'),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CameraRun(),
+                    ),
+                  )
+                },
+                // onPressed: () {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(content: Text('Camera Pressed')),
+                //   );
+                // },
+                child: const Text('Camera'),
+              ),
             ),
-            SizedBox(height: 30),
-            ElevatedButton(
-              // onPressed: () {
-              //   ScaffoldMessenger.of(context).showSnackBar(
-              //     const SnackBar(content: Text('Gallary Pressed')),
-              //   );
-              // },
-              onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ImageRun(),
-                  ),
-                )
-              },
-              child: const Text('Gallay'),
+            SizedBox(width: 20),
+            Expanded(
+              child: ElevatedButton(
+                // onPressed: () {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(content: Text('Gallary Pressed')),
+                //   );
+                // },
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ImageRun(),
+                    ),
+                  )
+                },
+                child: const Text('Gallay'),
+              ),
             ),
           ],
+        ),
+        SizedBox(height: 30),
+        ListTile(title: Text('▶ 결과')),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 1), // 상하 마진
+          height: 2, // 라인의 두께
+          color: Colors.grey, // 라인의 색상
         ),
         Expanded(child: Scrollbar(child: FrutnetListView())),
       ],
@@ -121,7 +136,7 @@ class _FrutnetListViewState extends State<FrutnetListView> {
           child: Row(
             children: [
               SizedBox(
-                width: 200,
+                width: 120,
                 height: 120,
                 child: Image.network(
                   data[index]["image"]!,
@@ -139,10 +154,31 @@ class _FrutnetListViewState extends State<FrutnetListView> {
                       children: <TextSpan>[
                         TextSpan(text: '일     자 : ${data[index]["text1"]!}\n'),
                         TextSpan(text: '추론 결과 : ${data[index]["text2"]!}\n'),
-                        TextSpan(text: '  ${data[index]["text3"]!}\n'),
+                        TextSpan(text: '  ${data[index]["text3"]!}'),
                       ],
                     ),
                   ),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('전송되었습니다.')),
+                          );
+                        },
+                        child: const Text('전송'),
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('삭제는 구현중입니다.')),
+                          );
+                        },
+                        child: const Text('삭제'),
+                      ),
+                    ],
+                  )
                 ],
               ),
               // DataTable(
