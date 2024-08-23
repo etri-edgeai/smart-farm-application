@@ -1,6 +1,6 @@
-import 'package:fc_edge24/pages/image_run.dart';
+// import 'package:fc_edge24/pages/image_run.dart';
 import 'package:flutter/material.dart';
-import 'camera_run.dart';
+// import 'camera_run.dart';
 
 class PageFrutnet extends StatefulWidget {
   const PageFrutnet({
@@ -26,43 +26,43 @@ class _PageFrutnetState extends State<PageFrutnet> {
         ListTile(title: Text("▶ 사진/동영상 선택")),
         Row(
           children: [
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CameraRun(),
-                    ),
-                  )
-                },
-                // onPressed: () {
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(content: Text('Camera Pressed')),
-                //   );
-                // },
-                child: const Text('Camera'),
-              ),
-            ),
+            // Expanded(
+            //   child: ElevatedButton(
+            //     onPressed: () => {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => CameraRun(),
+            //         ),
+            //       )
+            //     },
+            //     // onPressed: () {
+            //     //   ScaffoldMessenger.of(context).showSnackBar(
+            //     //     const SnackBar(content: Text('Camera Pressed')),
+            //     //   );
+            //     // },
+            //     child: const Text('Camera'),
+            //   ),
+            // ),
             SizedBox(width: 20),
-            Expanded(
-              child: ElevatedButton(
-                // onPressed: () {
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(content: Text('Gallary Pressed')),
-                //   );
-                // },
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ImageRun(),
-                    ),
-                  )
-                },
-                child: const Text('Gallay'),
-              ),
-            ),
+            // Expanded(
+            //   child: ElevatedButton(
+            //     // onPressed: () {
+            //     //   ScaffoldMessenger.of(context).showSnackBar(
+            //     //     const SnackBar(content: Text('Gallary Pressed')),
+            //     //   );
+            //     // },
+            //     onPressed: () => {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => ImageRun(),
+            //         ),
+            //       )
+            //     },
+            //     child: const Text('Gallay'),
+            //   ),
+            // ),
           ],
         ),
         SizedBox(height: 30),
@@ -93,35 +93,35 @@ class _FrutnetListViewState extends State<FrutnetListView> {
       "image":
           "https://image.dongascience.com/Photo/2018/10/1e4e9eb4a36aaff4874434582f414eae.jpg",
       "text1": "2024-07-01",
-      "text2": " class 0 : 정상 ",
+      "text2": " class 0 (정상) ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
       "image":
           "https://cdn.jjan.kr/data2/content/image/2021/05/27/20210527311576.jpg",
       "text1": "2024-06-21",
-      "text2": " class 0 : 정상 ",
+      "text2": " class 0 (정상) ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
       "image":
           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/TomateCherryTross.jpg/300px-TomateCherryTross.jpg",
       "text1": "2024-05-29",
-      "text2": " class 0 : 정상 ",
+      "text2": " class 0 (정상) ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
       "image":
           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/TomateCherryTross.jpg/300px-TomateCherryTross.jpg",
       "text1": "2024-04-29",
-      "text2": " class 0 : 정상 ",
+      "text2": " class 0 (정상) ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
       "image":
           "https://cdn.jjan.kr/data2/content/image/2021/05/27/20210527311576.jpg",
       "text1": "2024-04-21",
-      "text2": " class 0 : 정상 ",
+      "text2": " class 0 (정상) ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
   ];
@@ -147,15 +147,16 @@ class _FrutnetListViewState extends State<FrutnetListView> {
                 width: 10,
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      style: TextStyle(color: Colors.black, fontSize: 18),
-                      children: <TextSpan>[
-                        TextSpan(text: '일     자 : ${data[index]["text1"]!}\n'),
-                        TextSpan(text: '추론 결과 : ${data[index]["text2"]!}\n'),
-                        TextSpan(text: '  ${data[index]["text3"]!}'),
-                      ],
+                  Text('일     자 : ${data[index]["text1"]!}'),
+                  Text('추론 결과 : ${data[index]["text2"]!}'),
+                  Container(
+                    width: 180,
+                    child: Text(
+                      data[index]["text3"]!,
+                      softWrap: true,
                     ),
                   ),
                   Row(

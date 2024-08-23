@@ -1,8 +1,12 @@
-import 'package:fc_edge24/pages/image_run.dart';
+import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'camera_run.dart';
-import 'image_run.dart';
+import 'package:image_picker/image_picker.dart';
+import 'detect_espd.dart';
+import 'package:image/image.dart' as img;
+import 'package:path_provider/path_provider.dart';
+// import 'package:fc_edge24/pages/image_run.dart';
+// import 'camera_run.dart';
 
 class PageEspd extends StatefulWidget {
   const PageEspd({
@@ -14,56 +18,96 @@ class PageEspd extends StatefulWidget {
 }
 
 class _PageEspdState extends State<PageEspd> {
+  final imagePicker = ImagePicker();
+
+  // ObjectDetection? objectDetection;
+  DetectEspd? detectEspd;
+  Uint8List? image;
+  String? _inferText = "";
+
+  @override
+  void initState() {
+    super.initState();
+    detectEspd = DetectEspd();
+  }
+
   // @override
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          title: Text(
-            "ESPD ",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-        ),
-        ListTile(title: Text("▶ 사진/동영상 선택")),
+        // ListTile(
+        //   title: Text(
+        //     "ESPD ",
+        //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        //   ),
+        // ),
+        ListTile(title: Text("▶ ESPD 사진/동영상 선택")),
         Row(
           children: [
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CameraRun(),
-                    ),
-                  )
-                },
-                child: const Text('Camera'),
-              ),
+            SizedBox(width: 50),
+            ElevatedButton(
+              onPressed: () async {
+                final result = await imagePicker.pickImage(
+                  source: ImageSource.camera,
+                );
+                if (result != null) {
+                  Map<int, Object?> retMap =
+                      detectEspd!.analyseImage(result.path);
+                  image = retMap[0] as Uint8List;
+                  _inferText = "${retMap[1]}";
+                  final directory = await getApplicationDocumentsDirectory();
+                  // print(directory.path);
+                  // var file = File('${directory.path}/test.csv');
+                  // file.writeAsString("TEST");
+
+                  setState(() {});
+                }
+              },
+              child: const Text('카메라'),
             ),
             SizedBox(width: 30),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ImageRun(),
-                    ),
-                  )
-                },
-                child: const Text('Gallay'),
-              ),
+            ElevatedButton(
+              onPressed: () async {
+                final result = await imagePicker.pickImage(
+                  source: ImageSource.gallery,
+                );
+                if (result != null) {
+                  Map<int, Object?> retMap =
+                      detectEspd!.analyseImage(result.path);
+                  image = retMap[0] as Uint8List;
+                  _inferText = "${retMap[1]}";
+                  final directory = await getApplicationDocumentsDirectory();
+                  // print(directory.path);
+                  // var file = File('${directory.path}/test.csv');
+                  // file.writeAsString("TEST");
+
+                  setState(() {});
+                }
+              },
+              child: const Text('Gallay'),
             ),
+            SizedBox(width: 30),
           ],
         ),
-        SizedBox(height: 30),
-        ListTile(title: Text('▶ 결과')),
+        Expanded(
+          child: (image != null)
+              ? Image.memory(image!)
+              : Text(
+                  "사진을 선택해 주세요",
+                ),
+        ),
+        Container(
+          alignment: Alignment.topLeft,
+          child: Text("$_inferText"),
+        ),
+        SizedBox(height: 10),
         Container(
           margin: EdgeInsets.symmetric(vertical: 1), // 상하 마진
           height: 2, // 라인의 두께
           color: Colors.grey, // 라인의 색상
         ),
+        ListTile(title: Text('▶ 결과 목록')),
         Expanded(child: Scrollbar(child: EspdListView())),
       ],
     );
@@ -146,7 +190,13 @@ class _EspdListViewState extends State<EspdListView> {
                 children: [
                   Text('일     자 : ${data[index]["text1"]!}'),
                   Text('추론 결과 : ${data[index]["text2"]!}'),
-                  Text('  ${data[index]["text3"]!}'),
+                  Container(
+                    width: 180,
+                    child: Text(
+                      data[index]["text3"]!,
+                      softWrap: true,
+                    ),
+                  ),
                   Row(
                     children: [
                       ElevatedButton(

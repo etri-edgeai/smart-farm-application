@@ -1,5 +1,5 @@
 name: fc_edge24
-description: "A new Flutter project."
+description: "ETRI https://github.com/etri-edgeai/smart-farm-application "
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -31,18 +31,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   flutter_inappwebview: ^6.0.0
-  flutter_launcher_icons: 0.11.0
-  path_provider: ^2.0.2
-  camera: ^0.9.8+1
-  image: ^3.0.2
+  flutter_launcher_icons: ^0.13.1
+  path_provider: ^2.1.4
+  camera: ^0.11.0+2
   gif: ^2.3.0
   image_picker: ^1.1.2
   flutter_pytorch: ^1.0.1
+  tflite_flutter: ^0.10.4
+  image: ^4.2.0
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -59,7 +59,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

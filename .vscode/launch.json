@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "fc_edge24",
+      "cwd": "fc_edge24",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "fc_edge24 (profile mode)",
+      "cwd": "fc_edge24",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "fc_edge24 (release mode)",
+      "request": "launch",
+       "cwd": "fc_edge24",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]
+}

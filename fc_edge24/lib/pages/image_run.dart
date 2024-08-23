@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_pytorch/pigeon.dart';
 import 'package:flutter_pytorch/flutter_pytorch.dart';
+// import 'package:pytorch_lite/pytorch_lite.dart';
 
 class ImageRun extends StatefulWidget {
   @override
@@ -22,6 +23,7 @@ class _ImageRunState extends State<ImageRun> {
   ImagePicker _picker = ImagePicker();
   bool objectDetection = false;
   List<ResultObjectDetection?> objDetect = [];
+
   @override
   void initState() {
     super.initState();
@@ -31,13 +33,13 @@ class _ImageRunState extends State<ImageRun> {
   //load your model
   Future loadModel() async {
     String pathImageModel = "assets/models/model_classification.pt";
-    //String pathCustomModel = "assets/models/custom_model.ptl";
     String pathObjectDetectionModel = "assets/models/yolov5s.torchscript";
+    //String pathCustomModel = "assets/models/custom_model.ptl";
     try {
+      //_customModel = await PytorchLite.loadCustomModel(pathCustomModel);
       _imageModel = await FlutterPytorch.loadClassificationModel(
           pathImageModel, 224, 224,
           labelPath: "assets/labels/label_classification_imageNet.txt");
-      //_customModel = await PytorchLite.loadCustomModel(pathCustomModel);
       _objectModel = await FlutterPytorch.loadObjectDetectionModel(
           pathObjectDetectionModel, 80, 640, 640,
           labelPath: "assets/labels/labels_objectDetection_Coco.txt");
@@ -52,10 +54,11 @@ class _ImageRunState extends State<ImageRun> {
 
   //run an image model
   Future runObjectDetectionWithoutLabels() async {
-    //pick a random image
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
     objDetect = await _objectModel
         .getImagePredictionList(await File(image!.path).readAsBytes());
+
     objDetect.forEach((element) {
       print({
         "score": element?.score,
@@ -78,8 +81,8 @@ class _ImageRunState extends State<ImageRun> {
   }
 
   Future runObjectDetection() async {
-    //pick a random image
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
     objDetect = await _objectModel.getImagePrediction(
         await File(image!.path).readAsBytes(),
         minimumScore: 0.1,
@@ -197,18 +200,18 @@ class _ImageRunState extends State<ImageRun> {
             ),
             */
 
-            TextButton(
-              onPressed: runClassification,
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.blue,
-              ),
-              child: const Text(
-                "Run Classification",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            // TextButton(
+            //   onPressed: runClassification,
+            //   style: TextButton.styleFrom(
+            //     backgroundColor: Colors.blue,
+            //   ),
+            //   child: const Text(
+            //     "Run Classification",
+            //     style: TextStyle(
+            //       color: Colors.white,
+            //     ),
+            //   ),
+            // ),
             TextButton(
               onPressed: runObjectDetection,
               style: TextButton.styleFrom(
@@ -221,18 +224,18 @@ class _ImageRunState extends State<ImageRun> {
                 ),
               ),
             ),
-            TextButton(
-              onPressed: runObjectDetectionWithoutLabels,
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.blue,
-              ),
-              child: Text(
-                "Run object detection without labels",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            // TextButton(
+            //   onPressed: runObjectDetectionWithoutLabels,
+            //   style: TextButton.styleFrom(
+            //     backgroundColor: Colors.blue,
+            //   ),
+            //   child: Text(
+            //     "Run object detection without labels",
+            //     style: TextStyle(
+            //       color: Colors.white,
+            //     ),
+            //   ),
+            // ),
             Center(
               child: Visibility(
                 visible: _prediction != null,

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'pages/page_home.dart';
@@ -48,8 +47,8 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const PageFrutnet(),
     const PageEspd(),
+    const PageFrutnet(),
     const PageHome(),
     // const PageEspdLegacy(),
     // ImagePickerScreen(),
@@ -82,10 +81,6 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
           // icon: Icon(Icons.search),
           icon: Text("ESPD"),
           label: '(생육)',
@@ -93,6 +88,10 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
         BottomNavigationBarItem(
           icon: Text("FRUTNET"),
           label: '(성장)',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
         ),
         BottomNavigationBarItem(
           icon: Text("멀티센서"),
@@ -173,10 +172,9 @@ class PageEspdLegacy2 extends StatelessWidget {
 }
 
 class PageMultiSensor extends StatelessWidget {
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Text('11');
-  // }
+  const PageMultiSensor({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

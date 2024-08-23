@@ -171,6 +171,7 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
   void initStateAsync() async {
     WidgetsBinding.instance.addObserver(this);
+
     await loadModel();
 
     // Camera initialization
