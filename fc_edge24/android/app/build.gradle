@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace = "com.example.fc_edge24"
+    namespace = "com.edgeai.fc_edge24"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
