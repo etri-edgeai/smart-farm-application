@@ -1,5 +1,8 @@
 // import 'package:fc_edge24/pages/image_run.dart';
+import 'dart:typed_data';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'detect_frutnet.dart';
 // import 'camera_run.dart';
 
 class PageFrutnet extends StatefulWidget {
@@ -12,61 +15,95 @@ class PageFrutnet extends StatefulWidget {
 }
 
 class _PageFrutnetState extends State<PageFrutnet> {
+  final imagePicker = ImagePicker();
+  DetectFrutnet? detectFrutnet;
+  Uint8List? image;
+  String? _inferText = "";
+
+  @override
+  void initState() {
+    super.initState();
+    detectFrutnet = DetectFrutnet();
+  }
+
   // @override
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          title: Text(
-            "FRUTNET",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-        ),
-        ListTile(title: Text("▶ 사진/동영상 선택")),
+        ListTile(title: Text("▶ FRUTNET 사진/동영상 선택")),
         Row(
           children: [
-            // Expanded(
-            //   child: ElevatedButton(
-            //     onPressed: () => {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => CameraRun(),
-            //         ),
-            //       )
-            //     },
-            //     // onPressed: () {
-            //     //   ScaffoldMessenger.of(context).showSnackBar(
-            //     //     const SnackBar(content: Text('Camera Pressed')),
-            //     //   );
-            //     // },
-            //     child: const Text('Camera'),
-            //   ),
-            // ),
             SizedBox(width: 20),
-            // Expanded(
-            //   child: ElevatedButton(
-            //     // onPressed: () {
-            //     //   ScaffoldMessenger.of(context).showSnackBar(
-            //     //     const SnackBar(content: Text('Gallary Pressed')),
-            //     //   );
-            //     // },
-            //     onPressed: () => {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => ImageRun(),
-            //         ),
-            //       )
-            //     },
-            //     child: const Text('Gallay'),
-            //   ),
-            // ),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Camera Pressed')),
+                  );
+                },
+                // onPressed: () => {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => CameraRun(),
+                //   ),
+                // )
+                // },
+                child: const Text('Camera'),
+              ),
+            ),
+            SizedBox(width: 20),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () async {
+                  detectFrutnet!.analyseImage2();
+
+                  // final result = await imagePicker.pickImage(
+                  //   source: ImageSource.gallery,
+                  // );
+                  // if (result != null) {
+                  //   Map<int, Object?> retMap =
+                  //       detectFrutnet!.analyseImage(result.path);
+                  //   image = retMap[0] as Uint8List;
+                  //   _inferText = "${retMap[1]}";
+                  //   // final directory = await getApplicationDocumentsDirectory();
+                  //   // print(directory.path);
+                  //   // var file = File('${directory.path}/test.csv');
+                  //   // file.writeAsString("TEST");
+                  // setState(() {});
+                  // }
+                },
+                // onPressed: () => {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => ImageRun(),
+                //     ),
+                //   )
+                // },
+                child: const Text('Gallay'),
+              ),
+            ),
+            SizedBox(width: 20),
           ],
         ),
-        SizedBox(height: 30),
-        ListTile(title: Text('▶ 결과')),
+        Expanded(
+          child: (image != null)
+              ? Image.memory(image!)
+              : Text(
+                  "사진을 선택해 주세요",
+                ),
+        ),
+        Container(
+          alignment: Alignment.topLeft,
+          child: Text("$_inferText"),
+        ),
+        SizedBox(height: 20),
+        ListTile(
+          title: Text('▶ 결과'),
+          dense: true,
+        ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 1), // 상하 마진
           height: 2, // 라인의 두께

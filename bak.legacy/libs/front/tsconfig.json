@@ -1,7 +1,0 @@
-{
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "strictNullChecks": false
-  },
-  "include": ["**/*.ts", "../../apps/**/*.ts",  "../**/*.d.ts"],
-}

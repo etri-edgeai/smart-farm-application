@@ -123,13 +123,13 @@ class DetectEspd {
     final imageInput =
         img.copyResize(image!, width: _tensorSize, height: _tensorSize);
 
-    // 시작 시간 기록
-    DateTime startTime = DateTime.now();
-
     // 경과 시간을 밀리초 단위로 반환
 
     final tensorInput = prepareImageMatrix(imageInput);
+
+    Stopwatch stopwatch = Stopwatch()..start();
     final output = _runInference(tensorInput);
+    stopwatch.stop();
 
     var t0 = output[0] as List;
     var t1 = output[1] as List;
@@ -140,8 +140,7 @@ class DetectEspd {
     var class_idx = (t0)[0];
     var class_name = _labels?[class_idx];
     num conf = 100 * t2[0];
-    DateTime endTime = DateTime.now();
-    num inferTime = endTime.difference(startTime).inMilliseconds.toDouble();
+    num inferTime = stopwatch.elapsed.inMilliseconds;
 
     log('Class: $class_name');
     log('Confdence: : ${conf.toStringAsFixed(2)}');

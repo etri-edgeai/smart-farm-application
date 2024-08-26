@@ -91,7 +91,7 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'Home',
+          label: 'Fc Edge',
         ),
         BottomNavigationBarItem(
           icon: Text("멀티센서"),
