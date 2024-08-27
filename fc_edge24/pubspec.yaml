@@ -77,7 +77,6 @@ flutter:
       - assets/
       - assets/espd/
       - assets/models/
-      - assets/labels/
       - images/
       # - assets/models/model_classification.pt
       # - assets/labels_classification.txt
