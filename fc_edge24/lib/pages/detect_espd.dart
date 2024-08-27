@@ -132,10 +132,10 @@ class DetectEspd {
     stopwatch.stop();
 
     var t0 = output[0] as List;
-    var t1 = output[1] as List;
+    // var t1 = output[1] as List;
     var t2 = output[2] as List;
     var t3 = output[3] as List;
-    var t4 = output[4];
+    // var t4 = output[4];
 
     var class_idx = (t0)[0];
     var class_name = _labels?[class_idx];

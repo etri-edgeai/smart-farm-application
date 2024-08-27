@@ -2,8 +2,8 @@
 import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'detect_frutnet.dart';
-// import 'camera_run.dart';
+// import 'detect_frutnet.dart';
+import 'object_detection.dart';
 
 class PageFrutnet extends StatefulWidget {
   const PageFrutnet({
@@ -16,14 +16,14 @@ class PageFrutnet extends StatefulWidget {
 
 class _PageFrutnetState extends State<PageFrutnet> {
   final imagePicker = ImagePicker();
-  DetectFrutnet? detectFrutnet;
+  ObjectDetection? detectFrutnet;
   Uint8List? image;
   String? _inferText = "";
 
   @override
   void initState() {
     super.initState();
-    detectFrutnet = DetectFrutnet();
+    detectFrutnet = ObjectDetection();
   }
 
   // @override
@@ -57,31 +57,15 @@ class _PageFrutnetState extends State<PageFrutnet> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () async {
-                  detectFrutnet!.analyseImage2();
+                  final result = await imagePicker.pickImage(
+                    source: ImageSource.gallery,
+                  );
 
-                  // final result = await imagePicker.pickImage(
-                  //   source: ImageSource.gallery,
-                  // );
-                  // if (result != null) {
-                  //   Map<int, Object?> retMap =
-                  //       detectFrutnet!.analyseImage(result.path);
-                  //   image = retMap[0] as Uint8List;
-                  //   _inferText = "${retMap[1]}";
-                  //   // final directory = await getApplicationDocumentsDirectory();
-                  //   // print(directory.path);
-                  //   // var file = File('${directory.path}/test.csv');
-                  //   // file.writeAsString("TEST");
-                  // setState(() {});
-                  // }
+                  if (result != null) {
+                    image = detectFrutnet!.analyseImage(result.path);
+                    setState(() {});
+                  }
                 },
-                // onPressed: () => {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => ImageRun(),
-                //     ),
-                //   )
-                // },
                 child: const Text('Gallay'),
               ),
             ),
@@ -127,36 +111,13 @@ class FrutnetListView extends StatefulWidget {
 class _FrutnetListViewState extends State<FrutnetListView> {
   final List<Map<String, String>> data = [
     {
-      "image":
-          "https://image.dongascience.com/Photo/2018/10/1e4e9eb4a36aaff4874434582f414eae.jpg",
-      "text1": "2024-07-01",
-      "text2": " class 0 (정상) ",
-      "text3": " confidence: 0.924  latency : 300ms \n",
-    },
-    {
-      "image":
-          "https://cdn.jjan.kr/data2/content/image/2021/05/27/20210527311576.jpg",
-      "text1": "2024-06-21",
-      "text2": " class 0 (정상) ",
-      "text3": " confidence: 0.924  latency : 300ms \n",
-    },
-    {
-      "image":
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/TomateCherryTross.jpg/300px-TomateCherryTross.jpg",
-      "text1": "2024-05-29",
-      "text2": " class 0 (정상) ",
-      "text3": " confidence: 0.924  latency : 300ms \n",
-    },
-    {
-      "image":
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/TomateCherryTross.jpg/300px-TomateCherryTross.jpg",
+      "image": "assets/espd/f11.jpg",
       "text1": "2024-04-29",
       "text2": " class 0 (정상) ",
       "text3": " confidence: 0.924  latency : 300ms \n",
     },
     {
-      "image":
-          "https://cdn.jjan.kr/data2/content/image/2021/05/27/20210527311576.jpg",
+      "image": "assets/espd/f2.jpg",
       "text1": "2024-04-21",
       "text2": " class 0 (정상) ",
       "text3": " confidence: 0.924  latency : 300ms \n",
@@ -175,7 +136,7 @@ class _FrutnetListViewState extends State<FrutnetListView> {
               SizedBox(
                 width: 120,
                 height: 120,
-                child: Image.network(
+                child: Image.asset(
                   data[index]["image"]!,
                   fit: BoxFit.cover,
                 ),
