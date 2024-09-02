@@ -18,7 +18,7 @@ $ flutter build ios
 $ flutter build web
 ```
 * run 
-   ![run](images/Screenshot.png)
+   ![run](images/Screenshot.jpg)
 
 
 # Acknowledgement
