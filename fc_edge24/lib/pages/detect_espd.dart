@@ -137,12 +137,12 @@ class DetectEspd {
     var t3 = output[3] as List;
     // var t4 = output[4];
 
-    var class_idx = (t0)[0];
-    var class_name = _labels?[class_idx];
+    var classIdx = (t0)[0];
+    var className = _labels?[classIdx];
     num conf = 100 * t2[0];
     num inferTime = stopwatch.elapsed.inMilliseconds;
 
-    log('Class: $class_name');
+    log('Class: $className');
     log('Confdence: : ${conf.toStringAsFixed(2)}');
     log('Latency : : ${inferTime.toStringAsFixed(2)} ms');
 
@@ -162,11 +162,11 @@ class DetectEspd {
 
     var retMap = {
       0: img.encodeJpg(imageResult),
-      1: """      Class : $class_name
+      1: """      Class : $className
       Latency : ${inferTime.toStringAsFixed(0)}ms    Conf: ${conf.toStringAsFixed(2)}
       """,
       2: conf,
-      3: class_name,
+      3: className,
     };
     // return img.encodeJpg(imageResult);
 
