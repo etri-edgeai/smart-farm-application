@@ -6,11 +6,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   // if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
   //   await InAppWebViewController.setWebContentsDebuggingEnabled(kDebugMode);
   // }
-
   runApp(const FcEdgeApp());
 }
 
@@ -26,7 +24,7 @@ class FcEdgeApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const FcEdgeAppHomePage(title: 'FC EDGE 24'),
+      home: const FcEdgeAppHomePage(title: 'ETRI EDGE 24'),
     );
   }
 }
@@ -63,10 +61,6 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
       0 => PageEspd(),
       1 => PageFrutnet(),
       2 => PageHome(),
-      2 => WebViewWidget(
-          controller: _controller
-            ..loadRequest(Uri.parse(
-                "https://github.com/etri-edgeai/smart-farm-application"))),
       3 => WebViewWidget(
           controller: _controller
             ..loadRequest(Uri.parse(
