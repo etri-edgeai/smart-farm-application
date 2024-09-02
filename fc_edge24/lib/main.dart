@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'pages/page_home.dart';
 import 'pages/page_espd.dart';
 import 'pages/page_frutnet.dart';
-// import 'webview_page.dart';
-// import 'package:webview_flutter/webview_flutter.dart';
-// import 'page_home.dart';
-// import 'page_espd.dart';s
+import 'package:webview_flutter/webview_flutter.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,21 +41,49 @@ class FcEdgeAppHomePage extends StatefulWidget {
 
 class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
   int _selectedIndex = 0;
+  late WebViewController _controller;
+  final String url = "https://github.com/etri-edgeai/smart-farm-application";
 
-  static final List<Widget> _widgetOptions = <Widget>[
-    const PageEspd(),
-    const PageFrutnet(),
-    const PageHome(),
-    // const PageEspdLegacy(),
-    // ImagePickerScreen(),
-    PageMultiSensor(),
-    PageConnectOn(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted);
+    // ..loadRequest(Uri.parse(url));
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  Widget _getBody() {
+    return switch (_selectedIndex) {
+      0 => PageEspd(),
+      1 => PageFrutnet(),
+      2 => PageHome(),
+      2 => WebViewWidget(
+          controller: _controller
+            ..loadRequest(Uri.parse(
+                "https://github.com/etri-edgeai/smart-farm-application"))),
+      3 => WebViewWidget(
+          controller: _controller
+            ..loadRequest(Uri.parse(
+                "https://github.com/etri-edgeai/smart-farm-application"))),
+      4 => WebViewWidget(
+          controller: _controller
+            ..loadRequest(Uri.parse(
+                "https://github.com/etri-edgeai/smart-farm-application"))),
+      // 4 => WebViewWidget(
+      //     controller: _controller
+      //       ..loadRequest(Uri.parse("https://smartfarm.gongju.go.kr/app/"))),
+      _ => WebViewWidget(
+          controller: _controller
+            ..loadRequest(Uri.parse(
+                "https://github.com/etri-edgeai/smart-farm-application"))),
+      // _ => PageHome(),
+    };
   }
 
   @override
@@ -71,7 +95,7 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
         title: null,
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _getBody(),
       ),
       bottomNavigationBar: navBar(),
     );
@@ -110,105 +134,6 @@ class _FcEdgeAppHomePageState extends State<FcEdgeAppHomePage> {
       onTap: _onItemTapped,
       backgroundColor: Colors.white, // 배경색 지정
       type: BottomNavigationBarType.fixed, // 아이템이 4개 이하일 때 권장
-    );
-  }
-}
-
-class PageEspdLegacy2 extends StatelessWidget {
-  const PageEspdLegacy2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Button Pressed')),
-                );
-              },
-              child: const Text(
-                'ESPD',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('사진 선택'),
-                  ),
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('  '),
-                  ),
-                ),
-                // Add more buttons as needed
-              ],
-            ),
-            const Text(
-              """
-# 병충해 확인
-* 발생일자 : 2024-06-01
-* 추론결과 : 잎곰팡이병(Leaf mold)
-
-# 진단 결과
-    2024-06-01 111111111.png 진단 : 정상
- √ 2024-06-01 221111111.png 진단 : Leaf mold
-    2024-06-01 331111111.png 진단 : chlorosis virus
-""",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20), // 간격 추가
-          ],
-        ));
-  }
-}
-
-class PageMultiSensor extends StatelessWidget {
-  const PageMultiSensor({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InAppWebView(
-      initialUrlRequest:
-          URLRequest(url: WebUri('https://testfarm.farmcloud.kr/multisensor')),
-    );
-  }
-}
-
-class PageConnectOn extends StatelessWidget {
-  const PageConnectOn({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InAppWebView(
-      initialUrlRequest:
-          URLRequest(url: WebUri('https://testfarm.farmcloud.kr/app')),
-    );
-  }
-}
-
-class PageEspdLegacy extends StatelessWidget {
-  const PageEspdLegacy({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InAppWebView(
-      initialUrlRequest:
-          URLRequest(url: WebUri('https://smartca.farmcloud.kr/espd')),
     );
   }
 }
