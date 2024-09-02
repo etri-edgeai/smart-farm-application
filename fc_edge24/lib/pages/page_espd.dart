@@ -194,7 +194,7 @@ class _EspdListViewState extends State<EspdListView> {
                 children: [
                   Text('일     자 : ${data[index]["text1"]!}'),
                   Text('추론 결과 : ${data[index]["text2"]!}'),
-                  Container(
+                  SizedBox(
                     width: 180,
                     child: Text(
                       data[index]["text3"]!,

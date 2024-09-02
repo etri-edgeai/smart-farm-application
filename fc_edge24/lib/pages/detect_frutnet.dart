@@ -43,7 +43,9 @@ class DetectFrutnet {
       _imageModel = await PyTorchMobile.loadModel(pathImageModel);
       _customModel = await PyTorchMobile.loadModel(pathCustomModel);
     } on PlatformException {
-      print("only supported for android and ios so far");
+      if (kDebugMode) {
+        print("only supported for android and ios so far");
+      }
     }
   }
 
