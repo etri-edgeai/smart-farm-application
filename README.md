@@ -1,24 +1,60 @@
 # Overview
-Smart Farm Prediction is a system for sensing farm weather envirionment and prediction future environment and crop growth with Deep Learning.
+Smart Farm Prediction is a cross-platform application designed to provide seamless user experiences on Android, iOS, web, and Windows platforms. Built using Flutter, it ensures consistent performance and user interfaces across all supported devices.
 
-# Installing and building
-## Prerequisites
-* flutter - [Download & install](https://flutter.dev/)
 
-## Installing and building
-* Install Dependencies
-```bash
-cd fc_edge24
-flutter pub get
+## Features
+- **Cross-Platform Support**: Runs on Android, iOS, web, and Windows.
+- **Unified Codebase**: A single Flutter codebase powers all platforms.
+- **Customizable Interface**: Platform-specific code sections enable tailored user experiences.
+- **Modular Architecture**: Cleanly organized directories for platform-specific development.
+
+
+## Directory Structure
 ```
-* Build app
-```bash
-$ flutter build apk
-$ flutter build ios
-$ flutter build web
+.
+└── fc_edge24
+    ├── android
+    │   └── app
+    │       └── src
+    │           └── main
+    │               └── kotlin
+    │                   └── com
+    │                       └── edgeai
+    │                           └── fc_edge24
+    │                               └── MainActivity.kt
+    ├── ios
+    │   └── Runner
+    │       └── Base.lproj
+    │           ├── LaunchScreen.storyboard
+    │           └── Main.storyboard
+    ├── web
+    │   └── index.html
+    └── windows
+        └── runner
+            ├── flutter_window.cpp
+            ├── main.cpp
+            ├── utils.cpp
+            └── win32_window.cpp
 ```
-* run 
-   ![run](images/Screenshot.jpg)
+
+## Getting Started
+### Prerequisites
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) installed.
+- Android Studio or Xcode for mobile development.
+- Node.js and npm for web development.
+- Visual Studio for Windows development.
+
+### Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/fc_edge24.git
+    cd fc_edge24
+    ```
+2. Get Flutter dependencies:
+    ```bash
+    flutter pub get
+    ```
+    
 
 
 # Acknowledgement
