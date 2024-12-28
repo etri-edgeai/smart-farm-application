@@ -54,7 +54,67 @@ Smart Farm Prediction is a cross-platform application designed to provide seamle
     ```bash
     flutter pub get
     ```
-    
+
+
+### Running the Application
+#### Android
+1. Open the project in Android Studio.
+2. Connect an Android device or start an emulator.
+3. Run the application using:
+    ```bash
+    flutter run -d android
+    ```
+
+#### iOS
+1. Open `ios/Runner.xcworkspace` in Xcode.
+2. Select a simulator or connect an iOS device.
+3. Build and run the project using:
+    ```bash
+    flutter run -d ios
+    ```
+
+#### Web
+1. Ensure you have a web server or Flutter's web tool enabled.
+2. Run the application in the browser:
+    ```bash
+    flutter run -d web
+    ```
+
+#### Windows
+1. Open the project in Visual Studio.
+2. Build the project using:
+    ```bash
+    flutter run -d windows
+    ```
+
+## Platform-Specific Details
+### Android
+The Android entry point is defined in `MainActivity.kt`, which extends `FlutterActivity` to integrate Flutter into the Android platform.
+
+### iOS
+Storyboard files (`LaunchScreen.storyboard` and `Main.storyboard`) define the user interface for the iOS platform, providing a smooth transition into the Flutter app.
+
+### Web
+The web entry point is `index.html`, which sets up the environment and links necessary resources for the Flutter web application.
+
+### Windows
+The Windows entry point is `main.cpp`, which initializes the Flutter engine and configures the application window.
+
+## Contributing
+1. Fork the repository.
+2. Create a feature branch:
+    ```bash
+    git checkout -b feature-name
+    ```
+3. Commit your changes:
+    ```bash
+    git commit -m "Add a new feature"
+    ```
+4. Push to the branch:
+    ```bash
+    git push origin feature-name
+    ```
+5. Open a pull request.
 
 
 # Acknowledgement
